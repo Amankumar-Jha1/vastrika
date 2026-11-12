@@ -1,0 +1,1 @@
+print("Hello, my e-commerce server is starting!")
