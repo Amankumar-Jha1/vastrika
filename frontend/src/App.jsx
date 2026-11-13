@@ -47,7 +47,7 @@ function App() {
   const [isWeavesOpen, setIsWeavesOpen] = useState(false)
   const [wishlist, setWishlist] = useState(() => {
     try {
-      const saved = localStorage.getItem('vastrika_wishlist')
+      const saved = localStorage.getItem('apsara_wishlist')
       return saved ? JSON.parse(saved) : []
     } catch {
       return []
@@ -61,12 +61,11 @@ function App() {
 
   const catalogRef = useRef(null)
   const dropdownRef = useRef(null)
-
   const { addToCart, totalItems, setIsCartOpen } = useCart()
 
   // Persist wishlist
   useEffect(() => {
-    localStorage.setItem('vastrika_wishlist', JSON.stringify(wishlist))
+    localStorage.setItem('apsara_wishlist', JSON.stringify(wishlist))
   }, [wishlist])
 
   // Close dropdown on outside click
@@ -162,11 +161,9 @@ function App() {
         product.description.toLowerCase().includes(searchQuery.toLowerCase())) ||
       (product.category_name &&
         product.category_name.toLowerCase().includes(searchQuery.toLowerCase()))
-
     const matchesWishlist = showWishlistOnly
       ? wishlist.includes(product.id)
       : true
-
     return matchesSearch && matchesWishlist
   })
 
@@ -197,7 +194,7 @@ function App() {
             <span>Complimentary Insured Shipping Across India</span>
           </div>
           <div className="hidden sm:block text-[#D4AF37] font-medium">
-            Code: <span className="font-bold tracking-wider">VASTRIKA10</span> for 10% Off
+            Code: <span className="font-bold tracking-wider">APSARA10</span> for 10% Off
           </div>
         </div>
       </div>
@@ -239,7 +236,6 @@ function App() {
                       </button>
                     ))}
                   </div>
-
                   <div className="border-t border-[#EADECF] mt-4 pt-3.5">
                     <button
                       onClick={() => handleSelectCategory('')}
@@ -259,7 +255,6 @@ function App() {
             >
               Collections
             </button>
-
             <a href="#our-story" className="hover:text-[#8B263E] transition-colors">
               Our Story
             </a>
@@ -276,10 +271,10 @@ function App() {
             className="text-center mx-auto lg:mx-0 focus:outline-none"
           >
             <h1 className="text-2xl sm:text-3xl font-serif tracking-[0.22em] text-[#2C221E] font-semibold">
-              VASTRIKA
+              APSARA
             </h1>
             <p className="text-[9px] tracking-[0.22em] uppercase text-[#7A6F68] mt-0.5">
-              Apsara Inspired • Luxury Handlooms
+              By Urvashi Shah • Luxury Handlooms
             </p>
           </button>
 
@@ -352,36 +347,27 @@ function App() {
 
       {/* 3. Full-Bleed Heritage Hero Banner */}
       <section className="relative overflow-hidden bg-[#3B0D18] text-white">
-        {/* Background Saree Drape Image + Deep Burgundy Overlay */}
         <img
           src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=1600&q=80"
-          alt="Vastrika Handloom Heritage Saree"
+          alt="Apsara by Urvashi Shah Heritage Saree"
           className="absolute inset-0 w-full h-full object-cover object-center opacity-35 mix-blend-luminosity"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2D0A12]/95 via-[#4A1120]/85 to-[#2D0A12]/90" />
-
         <div className="relative max-w-4xl mx-auto px-6 py-20 sm:py-28 text-center">
-          {/* Eyebrow Pill */}
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-[#D4AF37]/40 backdrop-blur-sm text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-[#F3E5AB] mb-6">
             <span>✦</span>
-            <span>Inspired by Apsara by Urvashi Shah • Heritage Atelier</span>
+            <span>Apsara by Urvashi Shah • Heritage Atelier</span>
           </div>
-
-          {/* Editorial Headline */}
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-serif font-medium leading-[1.1] tracking-tight text-white">
             The Poetry of Weaves,
             <span className="block italic text-[#E2C068] mt-1">
               Draped in Pure Grace
             </span>
           </h2>
-
-          {/* Subtitle */}
           <p className="max-w-2xl mx-auto text-sm sm:text-base text-[#EADECF]/90 mt-6 leading-relaxed font-normal">
             Curated handloom luxury. From royal Maheshwari silk-cottons and Banarasi
             Katans to whisper-sheer floral organzas and temple Kanjeevarams.
           </p>
-
-          {/* Dual Pill CTAs */}
           <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
             <button
               onClick={() => handleWeaveMenuClick('maheshwari')}
@@ -390,7 +376,6 @@ function App() {
               <span>Explore Maheshwari</span>
               <span>→</span>
             </button>
-
             <button
               onClick={() => handleSelectCategory('')}
               className="bg-white/10 hover:bg-white/20 border border-white/25 backdrop-blur-sm text-white text-xs font-semibold tracking-[0.15em] uppercase px-7 py-3.5 rounded-full transition-all"
@@ -415,10 +400,7 @@ function App() {
             and uncompromised fiber purity.
           </p>
         </div>
-
-        {/* Fabric Cards Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {/* All Weaves Card */}
           <button
             onClick={() => handleSelectCategory('')}
             className={`group rounded-2xl p-6 text-center transition-all border ${
@@ -437,8 +419,6 @@ function App() {
               {allProducts.length} {allProducts.length === 1 ? 'Design' : 'Designs'}
             </p>
           </button>
-
-          {/* Dynamic Category Cards from Django */}
           {categories.map((cat) => {
             const count = getDesignCount(cat)
             const isSelected = selectedCategory === cat.slug && !showWishlistOnly
@@ -472,7 +452,6 @@ function App() {
         ref={catalogRef}
         className="max-w-7xl mx-auto px-4 sm:px-8 py-12 flex-1 w-full scroll-mt-20"
       >
-        {/* Editorial Section Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-[#EADECF] pb-5 mb-8">
           <div>
             <p className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#8B263E]">
@@ -490,9 +469,7 @@ function App() {
                 : 'Signature Handloom Weaves'}
             </h2>
           </div>
-
           <div className="flex items-center gap-4">
-            {/* Mobile Search Input */}
             <input
               type="text"
               value={searchQuery}
@@ -500,7 +477,6 @@ function App() {
               placeholder="Search sarees..."
               className="sm:hidden bg-white border border-[#EADECF] rounded-full px-3.5 py-1.5 text-xs focus:outline-none focus:border-[#8B263E]"
             />
-
             {(selectedCategory || showWishlistOnly || searchQuery) && (
               <button
                 onClick={() => {
@@ -516,19 +492,16 @@ function App() {
             )}
           </div>
         </div>
-
         {loading && (
           <p className="text-sm text-[#7A6F68] animate-pulse py-12 text-center font-serif italic text-lg">
             Curating handloom pieces from the atelier...
           </p>
         )}
-
         {error && (
           <p className="text-red-600 bg-red-50 p-4 rounded-xl border border-red-200 text-sm">
             {error}
           </p>
         )}
-
         {!loading && !error && (
           <>
             {filteredProducts.length === 0 ? (
@@ -557,14 +530,12 @@ function App() {
                   const isWishlisted = wishlist.includes(product.id)
                   const numericPrice = parseFloat(product.price)
                   const compareAtPrice = Math.round(numericPrice * 1.18)
-
                   return (
                     <div
                       key={product.id}
                       onClick={() => setSelectedProduct(product)}
                       className="group bg-white rounded-2xl border border-[#EADECF]/80 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col cursor-pointer"
                     >
-                      {/* Tall Portrait Saree Image Frame */}
                       <div className="relative aspect-[3/4] bg-[#F2ECE4] overflow-hidden">
                         {product.image ? (
                           <img
@@ -577,8 +548,6 @@ function App() {
                             [ Handloom Saree ]
                           </div>
                         )}
-
-                        {/* Top-Left Stacked Luxury Pills */}
                         <div className="absolute top-3.5 left-3.5 flex flex-col items-start gap-1.5">
                           <span className="bg-[#6D1D31]/95 text-white text-[9px] font-bold tracking-[0.14em] uppercase px-2.5 py-1 rounded-full shadow-sm">
                             Signature Piece
@@ -587,8 +556,6 @@ function App() {
                             {product.category_name || 'Handloom'}
                           </span>
                         </div>
-
-                        {/* Top-Right Circular Wishlist Heart */}
                         <button
                           onClick={(e) => toggleWishlist(e, product.id)}
                           className="absolute top-3.5 right-3.5 w-9 h-9 rounded-full bg-white/95 hover:bg-white shadow-md flex items-center justify-center transition-transform hover:scale-105"
@@ -602,8 +569,6 @@ function App() {
                             {isWishlisted ? '♥' : '♡'}
                           </span>
                         </button>
-
-                        {/* Bottom Hover Dual Action Pills */}
                         <div className="absolute inset-x-3.5 bottom-3.5 flex items-center gap-2 opacity-95 sm:opacity-0 sm:translate-y-2 sm:group-hover:opacity-100 sm:group-hover:translate-y-0 transition-all duration-300">
                           <button
                             onClick={(e) => {
@@ -615,7 +580,6 @@ function App() {
                             <span>👁</span>
                             <span>Quick View</span>
                           </button>
-
                           <button
                             onClick={(e) => {
                               e.stopPropagation()
@@ -633,8 +597,6 @@ function App() {
                           </button>
                         </div>
                       </div>
-
-                      {/* Card Details */}
                       <div className="p-5 flex-1 flex flex-col justify-between bg-white">
                         <div>
                           <div className="flex items-center justify-between text-[10px] tracking-[0.12em] uppercase text-[#7A6F68]">
@@ -652,17 +614,14 @@ function App() {
                               {isOutOfStock ? 'Out of stock' : `${product.stock} left`}
                             </span>
                           </div>
-
                           <h3 className="text-xl font-serif font-semibold text-[#2C221E] group-hover:text-[#8B263E] transition-colors mt-1.5 line-clamp-1">
                             {product.name}
                           </h3>
-
                           <p className="text-xs text-[#7A6F68] mt-1 line-clamp-1">
                             {product.description ||
                               'Timeless handwoven body with glistening zari border.'}
                           </p>
                         </div>
-
                         <div className="mt-4 pt-3 border-t border-[#F2ECE4] flex items-baseline gap-2.5">
                           <span className="text-lg font-serif font-bold text-[#2C221E]">
                             ₹{numericPrice.toLocaleString('en-IN')}
@@ -700,7 +659,6 @@ function App() {
               Varanasi, and Chanderi.
             </p>
           </div>
-
           <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#EADECF]">
             <span className="text-[#8B263E] text-lg">✦</span>
             <h4 className="font-serif text-xl font-semibold text-[#2C221E] mt-2">
@@ -711,7 +669,6 @@ function App() {
               10:00 AM – 7:00 PM IST.
             </p>
           </div>
-
           <div className="p-6 rounded-2xl bg-[#FAF7F2] border border-[#EADECF]">
             <span className="text-[#8B263E] text-lg">✦</span>
             <h4 className="font-serif text-xl font-semibold text-[#2C221E] mt-2">
@@ -730,19 +687,17 @@ function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
             <h4 className="font-serif text-2xl tracking-[0.22em] text-white">
-              VASTRIKA
+              APSARA
             </h4>
             <p className="text-[10px] tracking-[0.2em] uppercase text-[#C8B9AC] mt-1">
-              Apsara Inspired • Luxury Handlooms
+              By Urvashi Shah • Luxury Handlooms
             </p>
           </div>
-
           <div className="text-xs text-[#C8B9AC] text-center">
-            Curated Weaves • Direct Artisan Sourcing • Bandra West, Mumbai
+            Curated Weaves • Direct Artisan Sourcing • Mumbai Atelier
           </div>
-
           <div className="text-xs text-[#D4AF37]">
-            © {new Date().getFullYear()} Vastrika Handlooms
+            © {new Date().getFullYear()} Apsara by Urvashi Shah
           </div>
         </div>
       </footer>
@@ -753,9 +708,9 @@ function App() {
           <div className="mb-3 w-72 bg-white rounded-2xl shadow-2xl border border-[#EADECF] p-4 text-left">
             <div className="flex justify-between items-center border-b border-[#EADECF] pb-2.5">
               <div>
-                <p className="text-xs font-bold text-[#2C221E]">Vastrika Stylist Desk</p>
+                <p className="text-xs font-bold text-[#2C221E]">Apsara Stylist Desk</p>
                 <p className="text-[10px] text-emerald-600 font-medium">
-                  ● Online • Bandra Atelier
+                  ● Online • Mumbai Studio
                 </p>
               </div>
               <button
@@ -780,7 +735,6 @@ function App() {
             </button>
           </div>
         )}
-
         <button
           onClick={() => setIsStylistOpen((prev) => !prev)}
           className="ml-auto bg-[#25D366] hover:bg-[#20bd5a] text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg flex items-center gap-2 transition-transform hover:scale-105"
