@@ -67,7 +67,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'backend.wsgi.application'
 
 # Database configuration: Uses Render PostgreSQL when DATABASE_URL is present, else falls back to local MySQL or SQLite
-# Database configuration: Uses Render PostgreSQL when DATABASE_URL is present, else falls back to local MySQL or SQLite
 if os.environ.get('DATABASE_URL'):
     DATABASES = {
         'default': dj_database_url.config(
