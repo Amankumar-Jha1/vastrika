@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -65,8 +66,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-# Uses local MySQL when DB_NAME/DB_HOST is set in .env, and SQLite on Render
-if os.environ.get('DB_HOST') or os.environ.get('DB_NAME'):
+# Database configuration: Uses Render PostgreSQL when DATABASE_URL is present, else falls back to local MySQL or SQLite
+if os.environ.get('DATABASE_URL'):
+    DATABASES = {
+        'default': dj_database_url.config(
+            conn_max_age=600,
+            conn_health_checks_enabled=True,
+        )
+    }
+elif os.environ.get('DB_HOST') or os.environ.get('DB_NAME'):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.mysql',
